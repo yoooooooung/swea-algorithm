@@ -5,17 +5,17 @@ sys.stdin = open("1974_input.txt", "r")
 
 def sudoku_f(arr):
     # 9줄 검사
-    for i in range(1, 9):
+    for i in range(9):
         cnt_h = [0]*10
         cnt_v = [0]*10
 
-        for j in range(1, 9):
+        for j in range(9):
             # 가로 검사
             cnt_h[arr[i][j]] += 1
             # 세로 검사
             cnt_v[arr[j][i]] += 1
-            # print(tc, cnt_h)
-        if 2 in cnt_h or 2 in cnt_v:
+        # 0이 들어가 있는 경우로 수정 ([0]인덱스 제외하고)
+        if 0 in cnt_h[1:] or 0 in cnt_v[1:]:
             return 0
 
     # 3x3 검사
