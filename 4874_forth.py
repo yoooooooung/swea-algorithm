@@ -13,30 +13,32 @@ for tc in range(1, T+1):
     # print(susik)
     answer = ''
     for char in susik:
+
         if char.isnumeric():
             stack.append(int(char))
-        elif char == '.':
-            # 결과 꺼내
-            answer = stack.pop()
 
-        elif char in '-+*/' and len(stack) >= 2:
+        elif char == '.':
+            if len(stack) != 1:
+                answer = 'error'
+            else:
+                # 결과 꺼내
+                answer = stack.pop()
+
+        elif len(stack) >= 2 and char in '-+*/':
             n2 = stack.pop()
             n1 = stack.pop()
             if char == '-':
                 stack.append(n1 - n2)
-                print('빼기')
             elif char == '+':
                 stack.append(n1 + n2)
-                print('더하기')
             elif char == '*':
                 stack.append(n1 * n2)
-                print('곱하기')
             elif char == '/':
                 stack.append(n1 // n2)
 
-        else:
+        elif len(stack) < 2:
             answer = 'error'
+            break
 
-        print(f'stack :: {stack}')
     print(f'#{tc} {answer}')
 
