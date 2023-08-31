@@ -12,5 +12,5 @@ for tc in range(1, T+1):
         for x in range(N):
             if sell[y][x] == 'H':
                 H_count += 1
-    
+
     print(f'집 수 :: {H_count}')
